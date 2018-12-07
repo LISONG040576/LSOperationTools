@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <JPush/JPUSHService.h>
+
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LSPushManager : NSObject<JPUSHRegisterDelegate>
+@interface LSPushManager : NSObject
 
 
 + (instancetype)shareInstance;

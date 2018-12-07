@@ -8,6 +8,9 @@
 
 #import "LSShareManager.h"
 #import <LSCommonality/LSCommonality.h>
+#import <UMengUShare/UMSocialQQHandler.h>
+#import <UMengUShare/UMSocialSinaHandler.h>
+#import <UMengUShare/UMSocialWechatHandler.h>
 
 
 @implementation LSShareManager

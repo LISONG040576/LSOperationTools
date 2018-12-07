@@ -10,9 +10,7 @@
 
 #import "LSShareModel.h"
 
-#import <UMengUShare/UMSocialQQHandler.h>
-#import <UMengUShare/UMSocialSinaHandler.h>
-#import <UMengUShare/UMSocialWechatHandler.h>
+
 
 
 

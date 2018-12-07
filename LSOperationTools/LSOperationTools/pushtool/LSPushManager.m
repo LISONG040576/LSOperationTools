@@ -9,6 +9,11 @@
 
 #import "LSPushManager.h"
 
+#import <JPush/JPUSHService.h>
+
+@interface LSPushManager ()<JPUSHRegisterDelegate>
+
+@end
 
 
 @implementation LSPushManager
