@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   
   s.name         = "LSOperationTools"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "LSOperationTools."
 
   
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   
   s.source       = { :git => "https://github.com/LISONG040576/LSOperationTools.git", :tag => s.version.to_s }
 
-  s.source_files  = "LSOperationTools/**/module/*.{h,m}","LSOperationTools/**/pushtool/*.{h,m}"
+#s.source_files  = "LSOperationTools/**/module/*.{h,m}","LSOperationTools/**/pushtool/*.{h,m}"
 
 
   s.subspec 'networking' do |s1|
@@ -50,6 +50,22 @@ Pod::Spec.new do |s|
     s4.public_header_files = "LSOperationTools/LSOperationTools/sharetool/LSShareManager.h"
 	
   end
+
+
+s.subspec 'pushtool' do |s6|
+
+s6.source_files = "LSOperationTools/**/pushtool/*.{h,m}"
+s6.public_header_files = "LSOperationTools/LSOperationTools/pushtool/LSPushManager.h"
+
+
+end
+
+
+s.subspec 'module' do |s5|
+
+s5.source_files = "LSOperationTools/**/module/*.{h,m}"
+
+end
 
 
 
