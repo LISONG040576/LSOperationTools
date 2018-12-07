@@ -38,10 +38,10 @@
 - (void)sendVendorsConfigInfoToModulesWithConfigDic:(NSDictionary *)configDic{
     
 //    /** 配置友盟分享工具 **/
-//    [LSShareManager configUMengWithConfigDic:configDic];
-//
-//    /** 配置消息推送工具 **/
-//    [[LSPushManager shareInstance] configPushWithConfigDic:configDic launchOptions:self.launchOptions];
+    [LSShareManager configUMengWithConfigDic:configDic];
+
+    /** 配置消息推送工具 **/
+    [[LSPushManager shareInstance] configPushWithConfigDic:configDic launchOptions:self.launchOptions];
     
     
     

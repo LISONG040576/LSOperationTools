@@ -65,8 +65,7 @@ s.subspec 'module' do |s5|
 
 s5.source_files = "LSOperationTools/**/module/*.{h,m}"
 
-s5.dependency "LSOperationTools/pushtool"
-s5.dependency "LSOperationTools/sharetool"
+
 
 end
 
