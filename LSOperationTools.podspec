@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   
   s.source       = { :git => "https://github.com/LISONG040576/LSOperationTools.git", :tag => s.version.to_s }
 
-  #s.source_files  = "LSOperationTools","LSOperationTools/*.*"
+  s.source_files  = "LSOperationTools/**/module/*.{h,m}","LSOperationTools/**/pushtool/*.{h,m}"
 
 
   s.subspec 'networking' do |s1|
@@ -47,24 +47,13 @@ Pod::Spec.new do |s|
   s.subspec 'sharetool' do |s4|
 
 	s4.source_files = "LSOperationTools/**/sharetool/*.{h,m}"
+    s4.public_header_files = "LSOperationTools/LSOperationTools/sharetool/LSShareManager.h"
 	
   end
 
 
-  s.subspec 'module' do |s5|
 
-     s5.source_files = "LSOperationTools/**/module/*.{h,m}"
 
-     s5.dependency "LSOperationTools/pushtool"
-     s5.dependency "LSOperationTools/sharetool"
-
-  end
-
-  s.subspec 'pushtool' do |s6|
-
-    s6.source_files = "LSOperationTools/**/pushtool/*.{h,m}"
-
-  end
 	
 
 
@@ -74,7 +63,7 @@ Pod::Spec.new do |s|
 
   s.frameworks ="UIKit","Foundation"
 
-  s.ios.deployment_target = '6.0'
+  s.ios.deployment_target = '8.0'
 
 
 
@@ -89,6 +78,8 @@ Pod::Spec.new do |s|
   s.dependency "UMengUShare/Social/ReducedSina"
 
   s.dependency "JPush", "~> 3.1.0"
+
+
 
 
 

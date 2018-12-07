@@ -7,8 +7,8 @@
 //
 
 #import "LSOperationToolsModule.h"
-#import "LSShareManager.h"
-#import "LSPushManager.h"
+//#import "LSShareManager.h"
+//#import "LSPushManager.h"
 
 @interface LSOperationToolsModule()
 
@@ -37,11 +37,11 @@
  */
 - (void)sendVendorsConfigInfoToModulesWithConfigDic:(NSDictionary *)configDic{
     
-    /** 配置友盟分享工具 **/
-    [LSShareManager configUMengWithConfigDic:configDic];
-    
-    /** 配置消息推送工具 **/
-    [[LSPushManager shareInstance] configPushWithConfigDic:configDic launchOptions:self.launchOptions];
+//    /** 配置友盟分享工具 **/
+//    [LSShareManager configUMengWithConfigDic:configDic];
+//
+//    /** 配置消息推送工具 **/
+//    [[LSPushManager shareInstance] configPushWithConfigDic:configDic launchOptions:self.launchOptions];
     
     
     

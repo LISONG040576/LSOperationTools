@@ -8,8 +8,8 @@
 
 
 #import "LSPushManager.h"
-
 #import <JPush/JPUSHService.h>
+#import <UIKit/UIKit.h>
 
 @interface LSPushManager ()<JPUSHRegisterDelegate>
 
