@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   
   s.name         = "LSOperationTools"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "LSOperationTools."
 
   
@@ -18,7 +18,54 @@ Pod::Spec.new do |s|
   
   s.source       = { :git => "https://github.com/LISONG040576/LSOperationTools.git", :tag => s.version.to_s }
 
-  s.source_files  = "LSOperationTools","LSOperationTools/**/networking","LSOperationTools/**/cachemanage","LSOperationTools/**/paytool","LSOperationTools/**/sharetool"
+  #s.source_files  = "LSOperationTools","LSOperationTools/*.*"
+
+
+  s.subspec 'networking' do |s1|
+
+	s1.source_files = "LSOperationTools/**/networking/*.{h,m}"
+	
+	s1.subspec 'AFN' do |ss1|
+		
+		ss1.source_files = "LSOperationTools/**/networking/AFN/*.{h,m}"
+	end
+	
+  end
+
+  s.subspec 'cachemanage' do |s2|
+
+	s2.source_files = "LSOperationTools/**/cachemanage/*.{h,m}"
+	
+  end
+
+  s.subspec 'paytool' do |s3|
+
+	s3.source_files = "LSOperationTools/**/paytool/*.{h,m}"
+	
+  end
+
+  s.subspec 'sharetool' do |s4|
+
+	s4.source_files = "LSOperationTools/**/sharetool/*.{h,m}"
+	
+  end
+
+
+  s.subspec 'module' do |s5|
+
+     s5.source_files = "LSOperationTools/**/module/*.{h,m}"
+
+     s5.dependency "LSOperationTools/pushtool"
+     s5.dependency "LSOperationTools/sharetool"
+
+  end
+
+  s.subspec 'pushtool' do |s6|
+
+    s6.source_files = "LSOperationTools/**/pushtool/*.{h,m}"
+
+  end
+	
 
 
   s.requires_arc = true
@@ -28,6 +75,20 @@ Pod::Spec.new do |s|
   s.frameworks ="UIKit","Foundation"
 
   s.ios.deployment_target = '6.0'
+
+
+
+  s.dependency "LSCommonality", "~> 0.0.13"
+
+  s.dependency "LSMiddleWare", "~> 0.0.4"
+
+  s.dependency "UMengUShare/Social/ReducedWeChat"
+
+  s.dependency "UMengUShare/Social/ReducedQQ"
+
+  s.dependency "UMengUShare/Social/ReducedSina"
+
+  s.dependency "JPush", "~> 3.1.0"
 
 
 

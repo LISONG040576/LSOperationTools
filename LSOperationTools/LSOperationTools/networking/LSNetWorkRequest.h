@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LSBaseResultModel.h"
 
 @interface LSNetWorkRequest : NSObject
 
@@ -20,8 +21,8 @@
  *  @param fail    失败回调
  */
 + (void)GET:(NSString *)url
-    Success:(void(^)(id result))success
-       Fail:(void(^)(NSError *error))fail;
+    Success:(void(^)(LSBaseResultModel *result))success
+       Fail:(void(^)(LSBaseResultModel *result,NSError *error))fail;
 
 /**
  *  @author lisong, 16-04-08 13:04:02
@@ -35,8 +36,8 @@
  */
 + (void)GET:(NSString *)url
        Head:(NSDictionary *)head
-    Success:(void(^)(id result))success
-       Fail:(void(^)(NSError *error))fail;
+    Success:(void(^)(LSBaseResultModel *result))success
+       Fail:(void(^)(LSBaseResultModel *result,NSError *error))fail;
 
 /**
  *  @author lisong, 16-04-14 10:04:11
@@ -50,8 +51,8 @@
  */
 + (void)POST:(NSString *)url
         Body:(id)body
-     Success:(void(^)(id result))success
-        Fail:(void(^)(NSError *error))fail;
+     Success:(void(^)(LSBaseResultModel *result))success
+        Fail:(void(^)(LSBaseResultModel *result,NSError *error))fail;
 
 /**
  *  @author lisong, 16-04-08 13:04:57
@@ -67,8 +68,8 @@
 + (void)POST:(NSString *)url
         Head:(NSDictionary *)head
         Body:(id)body
-     Success:(void(^)(id result))success
-        Fail:(void(^)(NSError *error))fail;
+     Success:(void(^)(LSBaseResultModel *result))success
+        Fail:(void(^)(LSBaseResultModel *result,NSError *error))fail;
 
 
 /**

@@ -8,6 +8,7 @@
 
 #import "LSNetWorkRequest.h"
 #import "AFNetworking.h"
+
 @interface LSNetWorkRequest ()
 {
     BOOL _isGetType;
@@ -23,21 +24,21 @@
 #pragma mark - GET
 
 + (void)GET:(NSString *)url
-    Success:(void(^)(id result))success
-       Fail:(void(^)(NSError *error))fail {
+    Success:(void(^)(LSBaseResultModel *result))success
+       Fail:(void(^)(LSBaseResultModel *result,NSError *error))fail {
     [self GET:url
          Head:nil
-      Success:^(id result) {
+      Success:^(LSBaseResultModel *result) {
           success(result);
-      } Fail:^(NSError *error) {
-          fail(error);
+      } Fail:^(LSBaseResultModel *result,NSError *error) {
+          fail(result, error);
       }];
 }
 
 + (void)GET:(NSString *)url
        Head:(NSDictionary *)head
-    Success:(void(^)(id result))success
-       Fail:(void(^)(NSError *error))fail; {
+    Success:(void(^)(LSBaseResultModel *result))success
+       Fail:(void(^)(LSBaseResultModel *result,NSError *error))fail; {
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     /*
@@ -63,11 +64,19 @@
       parameters:nil
         progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+             
+             [self handleResponseObject:responseObject success:success fail:fail];
+             
              success(responseObject);
          }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              
-             fail(error);
+             LSBaseResultModel *resultModel = [LSBaseResultModel new];
+             resultModel.success = NO;
+             resultModel.resultCode = error.code;
+             resultModel.resultMessage = [NSString stringWithFormat:@"加载失败 - %@",error.localizedDescription];
+             
+             fail(resultModel,error);
          }];
 }
 
@@ -75,24 +84,24 @@
 
 + (void)POST:(NSString *)url
         Body:(id)body
-     Success:(void(^)(id result))success
-        Fail:(void(^)(NSError *error))fail {
+     Success:(void(^)(LSBaseResultModel *result))success
+        Fail:(void(^)(LSBaseResultModel *result,NSError *error))fail {
     [self POST:url
           Head:nil
           Body:body
-       Success:^(id result) {
+       Success:^(LSBaseResultModel *result) {
            success(result);
        }
-          Fail:^(NSError *error) {
-              fail(error);
+          Fail:^(LSBaseResultModel *result,NSError *error) {
+              fail(result, error);
           }];
 }
 
 + (void)POST:(NSString *)url
         Head:(NSDictionary *)head
         Body:(id)body
-     Success:(void(^)(id result))success
-        Fail:(void(^)(NSError *error))fail {
+     Success:(void(^)(LSBaseResultModel *result))success
+        Fail:(void(^)(LSBaseResultModel *result,NSError *error))fail {
     
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -155,27 +164,71 @@
          progress:nil
           success:^(NSURLSessionTask *task, id responseObject) {
               
-              NSString * jsonStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-              jsonStr = [jsonStr stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
-              jsonStr = [jsonStr stringByReplacingOccurrencesOfString:@"\n"   withString:@""];
-              jsonStr = [jsonStr stringByReplacingOccurrencesOfString:@"\t"   withString:@""];
-              jsonStr = [jsonStr stringByReplacingOccurrencesOfString:@"  "   withString:@""];
-              NSError *jsonError;
-              NSData *objectData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
-              NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                      options:NSJSONReadingMutableContainers
-                                                                        error:&jsonError];
-              if (jsonError) {
-                  NSLog(@" JSON 解析失败 ： ==>%@<==", jsonError);
-                  fail(jsonError);
-                  return;
-              }
-              success(jsonDic);
+              [self handleResponseObject:responseObject success:success fail:fail];
+              
           }
           failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
               NSLog(@"网络请求失败 ： ==>%@<==", error);
-              fail(error);
+              LSBaseResultModel *resultModel = [LSBaseResultModel new];
+              resultModel.success = NO;
+              resultModel.resultCode = error.code;
+              resultModel.resultMessage = [NSString stringWithFormat:@"加载失败 - %@",error.localizedDescription];
+              
+              fail(resultModel,error);
           }];
+}
+
+
+
+/**
+ 处理请求回来的业务数据
+
+ @param responseObject 返回的json数据
+ @param success 成功t回掉
+ @param fail 失败回掉
+ */
++ (void)handleResponseObject:(id)responseObject
+                 success:(void(^)(LSBaseResultModel *result))success
+                    fail:(void(^)(LSBaseResultModel *result,NSError *error))fail{
+    
+    
+    NSString * jsonStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+    jsonStr = [jsonStr stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+    jsonStr = [jsonStr stringByReplacingOccurrencesOfString:@"\n"   withString:@""];
+    jsonStr = [jsonStr stringByReplacingOccurrencesOfString:@"\t"   withString:@""];
+    jsonStr = [jsonStr stringByReplacingOccurrencesOfString:@"  "   withString:@""];
+    NSError *jsonError;
+    NSData *objectData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:objectData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&jsonError];
+    
+    LSBaseResultModel *resultModel = [LSBaseResultModel new];
+    
+    if (jsonError) {
+        NSLog(@" JSON 解析失败 ： ==>%@<==", jsonError);
+        resultModel.success = NO;
+        resultModel.resultCode = jsonError.code;
+        resultModel.resultMessage = [NSString stringWithFormat:@"JSON 解析失败 - %@",jsonError.localizedDescription];
+        
+        fail(resultModel,jsonError);
+        return;
+    }else if (jsonDic && jsonDic[@"code"] && [jsonDic[@"code"] integerValue] != 200){
+        resultModel.success = NO;
+        resultModel.resultCode = [jsonDic[@"code"] integerValue];
+        resultModel.resultMessage = jsonDic[@"message"];
+        resultModel.resultDict = jsonDic;
+        fail(resultModel,jsonError);
+        return;
+    }
+    
+    resultModel.success = YES;
+    resultModel.resultCode = [jsonDic[@"code"] integerValue];
+    resultModel.resultMessage = jsonDic[@"message"];
+    resultModel.resultDict = jsonDic;
+    
+    success(resultModel);
+    
 }
 
 

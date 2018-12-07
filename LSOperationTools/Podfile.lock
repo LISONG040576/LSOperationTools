@@ -1,0 +1,103 @@
+PODS:
+  - JCore (1.2.5)
+  - JPush (3.1.0):
+    - JCore (~> 1.2.0)
+  - LSCommonality (0.0.13):
+    - LSCommonality/baseclass (= 0.0.13)
+    - LSCommonality/categary (= 0.0.13)
+    - LSCommonality/customview (= 0.0.13)
+    - LSCommonality/model (= 0.0.13)
+    - LSCommonality/module (= 0.0.13)
+    - LSCommonality/tools (= 0.0.13)
+    - LSMiddleWare (~> 0.0.2)
+    - SDAutoLayout (~> 2.2.1)
+    - SDWebImage
+    - SVProgressHUD (~> 2.2.5)
+  - LSCommonality/baseclass (0.0.13):
+    - LSCommonality/customview
+    - LSCommonality/tools
+    - LSMiddleWare (~> 0.0.2)
+    - SDAutoLayout (~> 2.2.1)
+    - SDWebImage
+    - SVProgressHUD (~> 2.2.5)
+  - LSCommonality/categary (0.0.13):
+    - LSCommonality/tools
+    - LSMiddleWare (~> 0.0.2)
+    - SDAutoLayout (~> 2.2.1)
+    - SDWebImage
+    - SVProgressHUD (~> 2.2.5)
+  - LSCommonality/customview (0.0.13):
+    - LSCommonality/tools
+    - LSMiddleWare (~> 0.0.2)
+    - SDAutoLayout (~> 2.2.1)
+    - SDWebImage
+    - SVProgressHUD (~> 2.2.5)
+  - LSCommonality/model (0.0.13):
+    - LSCommonality/tools
+    - LSMiddleWare (~> 0.0.2)
+    - SDAutoLayout (~> 2.2.1)
+    - SDWebImage
+    - SVProgressHUD (~> 2.2.5)
+  - LSCommonality/module (0.0.13):
+    - LSCommonality/tools
+    - LSMiddleWare (~> 0.0.2)
+    - SDAutoLayout (~> 2.2.1)
+    - SDWebImage
+    - SVProgressHUD (~> 2.2.5)
+  - LSCommonality/tools (0.0.13):
+    - LSMiddleWare (~> 0.0.2)
+    - SDAutoLayout (~> 2.2.1)
+    - SDWebImage
+    - SVProgressHUD (~> 2.2.5)
+  - LSMiddleWare (0.0.4):
+    - LSMiddleWare/LSModule (= 0.0.4)
+    - LSMiddleWare/LSRouter (= 0.0.4)
+  - LSMiddleWare/LSModule (0.0.4)
+  - LSMiddleWare/LSRouter (0.0.4)
+  - SDAutoLayout (2.2.1)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
+  - SVProgressHUD (2.2.5)
+  - UMengUShare/Core (6.4.8.2):
+    - UMengUShare/Network
+  - UMengUShare/Network (6.4.8.2)
+  - UMengUShare/Social/ReducedQQ (6.4.8.2):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedSina (6.4.8.2):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedWeChat (6.4.8.2):
+    - UMengUShare/Core
+
+DEPENDENCIES:
+  - JPush (= 3.1.0)
+  - LSCommonality (~> 0.0.13)
+  - LSMiddleWare (~> 0.0.4)
+  - UMengUShare/Social/ReducedQQ
+  - UMengUShare/Social/ReducedSina
+  - UMengUShare/Social/ReducedWeChat
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - JCore
+    - JPush
+    - LSCommonality
+    - LSMiddleWare
+    - SDAutoLayout
+    - SDWebImage
+    - SVProgressHUD
+    - UMengUShare
+
+SPEC CHECKSUMS:
+  JCore: 14706de2640b25fb77dbd02332696491407f37c9
+  JPush: 5921e25ad13e0386351079217b009f2039084eac
+  LSCommonality: c1c8fc8beb6c41e54a55efbbc55ae4505b0019e3
+  LSMiddleWare: 320af7772b63aeb550e36a35b4aed6c36e6665f5
+  SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
+
+PODFILE CHECKSUM: 1e53fcbfbb183fb783d408e5107037f9374f84fc
+
+COCOAPODS: 1.5.3
