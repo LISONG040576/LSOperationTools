@@ -7,8 +7,8 @@
 //
 
 #import "LSOperationToolsModule.h"
-//#import "LSShareManager.h"
-//#import "LSPushManager.h"
+#import "LSShareManager.h"
+#import "LSPushManager.h"
 
 @interface LSOperationToolsModule()
 
